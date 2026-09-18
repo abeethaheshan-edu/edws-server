@@ -21,7 +21,7 @@ public class AccessControl {
         return session.getCurrentUserOrEmpty()
                 .map(user -> user.getRole() == Role.GN_OFFICER
                         && user.getAdminProfile() != null
-                        && user.getAdminProfile().getAdministrativeScope() == AdministrativeScope.GN_DIVISION
+                        && user.getAdminProfile().getAdministrativeScope() == AdministrativeScope.GRAMA_NILADHARI
                         && user.getGnDivision() != null)
                 .orElse(false);
     }

@@ -67,15 +67,6 @@
       ]
     },
     {
-      "element": "CITIZEN_REGISTRY",
-      "actions": [
-        "VIEW",
-        "CREATE",
-        "EDIT",
-        "DELETE"
-      ]
-    },
-    {
       "element": "EMERGENCY_BROADCAST",
       "actions": [
         "VIEW",

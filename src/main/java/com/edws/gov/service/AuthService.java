@@ -140,7 +140,10 @@ public class AuthService {
     }
 
     public String rolePolicyForCurrentUser() {
-        Role role = session.getCurrentUser().getRole();
+        User current = session.getCurrentUser();
+        Role role = current.getRole();
+        log.info("Access policy requested by userId={} email={} role={}",
+                current.getId(), current.getEmail(), role);
         if (role == null) {
             throw new ApiException(ErrorCode.ROLE_DEFINITION_NOT_FOUND, "This account has no role");
         }

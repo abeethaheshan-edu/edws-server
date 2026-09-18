@@ -58,6 +58,7 @@ public class User extends BaseDocument {
 
     @DocumentReference(lazy = true)
     private List<User> familyMembers = new ArrayList<>();
+    private List<FamilyMember> members = new ArrayList<>();
 
     @DocumentReference(lazy = true)
     private User registeredBy;
@@ -101,7 +102,6 @@ public class User extends BaseDocument {
 
     public AuthenticatedUserResponse toAuthenticatedResponse() {
         AdministrativeScope administrativeScope = null;
-        System.out.println(this.getId() + "IDXXX");
         if (this.getAdminProfile() != null) {
             administrativeScope = this.getAdminProfile().getAdministrativeScope();
         }

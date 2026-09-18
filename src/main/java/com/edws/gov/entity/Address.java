@@ -25,6 +25,10 @@ public class Address extends BaseDocument{
 
       @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
       private GeoJsonPoint location;
+      private  String category;
+      private  String categoryOther;
+      private  String province;
+      private  String district;
 
       public  Address(){
 
@@ -37,6 +41,12 @@ public class Address extends BaseDocument{
             this.zipCode = dto.zipCode();
             this.city = dto.city();
             this.gnDivision = dto.gnDivision();
+
+            this.category = dto.category();
+            this.categoryOther = dto.categoryOther();
+            this.province = dto.province();
+            this.district = dto.district();
+            this.isPrimary = Boolean.TRUE.equals(dto.primary());
 
             if (dto.hasCoordinates()) {
                 this.location = new GeoJsonPoint(dto.longitude(), dto.latitude());

@@ -98,6 +98,17 @@ public class UserController {
     }
 
     @GnOfficerOnly
+    @GetMapping(SecurityRoutes.Users.CITIZENS)
+    public ResponseEntity<ApiResponse<PageResponseDTO<UserResponseDTO>>> findCitizens(
+            @RequestParam(defaultValue = "") String search,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int pageSize) {
+
+        return ResponseEntity.ok(ApiResponse.of("Citizens retrieved successfully",
+                userService.findCitizens(search, page, pageSize)));
+    }
+
+    @GnOfficerOnly
     @PostMapping(SecurityRoutes.Users.CITIZENS)
     public ResponseEntity<ApiResponse<UserResponseDTO>> createCitizen(@Valid @RequestBody CitizenRequestDTO request) {
         UserResponseDTO created = userService.createCitizen(request);

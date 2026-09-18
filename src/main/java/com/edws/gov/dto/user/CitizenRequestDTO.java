@@ -30,6 +30,10 @@ public record CitizenRequestDTO(
                 message = "Phone must be a valid Sri Lankan number, e.g. 0771234567 or +94771234567")
         String phone,
 
+        @Pattern(regexp = "^$|^(?:\\+94|0)[0-9]{9}$",
+                message = "Secondary phone must be a valid Sri Lankan number")
+        String secondaryPhone,
+
         @Valid
         AddressDto address,
         String gnDivisionId,
@@ -41,6 +45,10 @@ public record CitizenRequestDTO(
         List<AddressDto> properties,
 
         @Size(max = 20, message = "At most 20 family members can be linked at once")
+        @Valid
+        @Size(max = 20, message = "At most 20 members can be registered at once")
+        List<CitizenMemberDTO> members,
+
         List<@NotBlank String> familyMemberIds
 ) {
 }

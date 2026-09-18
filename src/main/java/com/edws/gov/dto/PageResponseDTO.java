@@ -9,8 +9,7 @@ public record PageResponseDTO<T>(
         List<T> content,
         int page,
         int pageSize,
-        long totalItems,
-        int totalPages
+        long totalItems
 ) {
 
     public static <E, T> PageResponseDTO<T> of(Page<E> page, Function<E, T> mapper) {
@@ -18,8 +17,7 @@ public record PageResponseDTO<T>(
                 page.getContent().stream().map(mapper).toList(),
                 page.getNumber() + 1,
                 page.getSize(),
-                page.getTotalElements(),
-                page.getTotalPages()
+                page.getTotalElements()
         );
     }
 }

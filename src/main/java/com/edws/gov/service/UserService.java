@@ -23,6 +23,14 @@ import java.security.SecureRandom;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import com.edws.gov.dto.PageResponseDTO;
+import com.edws.gov.dto.user.CitizenMemberDTO;
+import com.edws.gov.entity.FamilyMember;
+import com.edws.gov.entity.UserProfile;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -86,6 +94,11 @@ public class UserService {
         citizen.setDistrict(district);
         citizen.setProvince(province);
         citizen.setRegisteredBy(officer);
+        citizen.setMembers(toMembers(request.members()));
+
+        if (citizen.getProfile() != null) {
+            citizen.getProfile().setSecondaryPhone(request.secondaryPhone());
+        }
 
         User savedUser = userRepository.save(citizen);
 
@@ -256,6 +269,55 @@ public class UserService {
         return new ArrayList<>(found);
     }
 
+
+    public PageResponseDTO<UserResponseDTO> findCitizens(String search, int page, int pageSize) {
+        User officer = session.getCurrentUser();
+        GnDivision division = resolveOfficerDivision(officer);
+
+        Pageable pageable = PageRequest.of(Math.max(0, page - 1), Math.max(1, pageSize),
+                Sort.by(Sort.Direction.DESC, "createdAt"));
+
+        Page<User> citizens = userRepository.findByGnDivisionAndRole(division, Role.USER, pageable);
+        String term = search == null ? "" : search.trim().toLowerCase();
+
+        List<UserResponseDTO> items = citizens.getContent().stream()
+                .filter(citizen -> matchesSearch(citizen, term))
+                .map(User::toUserResponseDTO)
+                .toList();
+
+        return new PageResponseDTO<>(items, page, pageSize, citizens.getTotalElements());
+    }
+
+    private boolean matchesSearch(User citizen, String term) {
+        if (term.isEmpty()) {
+            return true;
+        }
+
+        UserProfile profile = citizen.getProfile();
+        String name = profile == null || profile.getFullName() == null ? "" : profile.getFullName().toLowerCase();
+        String nic = profile == null || profile.getNic() == null ? "" : profile.getNic().toLowerCase();
+        String email = citizen.getEmail() == null ? "" : citizen.getEmail().toLowerCase();
+
+        return name.contains(term) || nic.contains(term) || email.contains(term);
+    }
+
+    private List<FamilyMember> toMembers(List<CitizenMemberDTO> members) {
+        if (members == null || members.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return members.stream()
+                .filter(member -> member.fullName() != null && !member.fullName().isBlank())
+                .map(member -> {
+                    FamilyMember entity = new FamilyMember();
+                    entity.setName(member.fullName());
+                    entity.setNic(member.nic());
+                    entity.setPhone(member.phone());
+                    entity.setEmail(member.email());
+                    return entity;
+                })
+                .toList();
+    }
 
     private String generateTemporaryPassword() {
         byte[] bytes = new byte[24];

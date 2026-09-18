@@ -2,28 +2,9 @@
   "role": "GN_OFFICER",
   "elements": [
     {
-      "element": "NAV_DASHBOARD",
+      "element": "NAV_CITIZEN_REGISTRY",
       "actions": [
         "VIEW"
-      ]
-    },
-    {
-      "element": "NAV_DISASTER_ALERTS",
-      "actions": [
-        "VIEW"
-      ]
-    },
-    {
-      "element": "NAV_USER_MANAGEMENT",
-      "actions": [
-        "VIEW"
-      ]
-    },
-    {
-      "element": "DISASTER_ALERT",
-      "actions": [
-        "VIEW",
-        "CREATE"
       ]
     },
     {
@@ -31,8 +12,7 @@
       "actions": [
         "VIEW",
         "CREATE",
-        "EDIT",
-        "DELETE"
+        "EDIT"
       ]
     }
   ]

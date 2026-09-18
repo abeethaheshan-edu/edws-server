@@ -111,6 +111,7 @@ public class OfficialService {
         official.setEmail(email);
         official.setPassword(passwordEncoder.encode(temporaryPassword));
         official.setTempPassword(true);
+
         official.setHouseHolder(false);
         official.setRole(request.role());
         official.setStatus(UserStatus.ACTIVE);

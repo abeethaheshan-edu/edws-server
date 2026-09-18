@@ -75,6 +75,12 @@
         "VIEW",
         "CREATE"
       ]
+    },
+    {
+      "element": "NAV_CITIZEN_REGISTRY",
+      "actions": [
+        "VIEW"
+      ]
     }
   ]
 }

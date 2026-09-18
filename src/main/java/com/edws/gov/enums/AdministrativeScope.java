@@ -6,5 +6,6 @@ public enum AdministrativeScope {
     DISTRICT,
     DIVISION,
     GN_DIVISION,
-    PROVINCIAL_HEAD
+    PROVINCIAL_HEAD,
+    GRAMA_NILADHARI
 }
