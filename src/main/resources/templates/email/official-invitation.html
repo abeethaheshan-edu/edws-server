@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your eDWS account</title>
+</head>
+<body style="margin:0;padding:24px;background-color:#f6f8fd;font-family:Arial,Helvetica,sans-serif;color:#0b1c30;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;background-color:#ffffff;border:1px solid #eceef6;border-radius:12px;">
+  <tr>
+    <td style="padding:24px 32px;border-bottom:1px solid #eceef6;">
+      <p style="margin:0;font-size:18px;font-weight:bold;">DMC Sri Lanka</p>
+      <p style="margin:2px 0 0;font-size:11px;letter-spacing:1.5px;color:#6b7280;text-transform:uppercase;">Early Warning System</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:32px;">
+      <h1 style="margin:0 0 12px;font-size:20px;">Your account is ready</h1>
+
+      <p style="margin:0 0 16px;font-size:14px;line-height:1.6;">
+        Hello <span th:text="${content.fullName} ?: 'Officer'">Officer</span>,
+      </p>
+
+      <p style="margin:0 0 24px;font-size:14px;line-height:1.6;color:#434656;">
+        An eDWS account has been created for you with the role
+        <strong th:text="${content.role}">ADMIN</strong>. Sign in with the temporary password below.
+        You will be asked to set your own password straight away.
+      </p>
+
+      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:0 0 24px;background-color:#f4f7fd;border-radius:8px;">
+        <tr>
+          <td style="padding:16px 20px;font-size:13px;color:#6b7280;">Email</td>
+          <td style="padding:16px 20px;font-size:14px;font-weight:bold;text-align:right;" th:text="${content.email}">name@dmc.gov.lk</td>
+        </tr>
+        <tr>
+          <td style="padding:0 20px 16px;font-size:13px;color:#6b7280;">Temporary password</td>
+          <td style="padding:0 20px 16px;font-size:16px;font-weight:bold;text-align:right;font-family:'Courier New',monospace;" th:text="${content.temporaryPassword}">Temp1234#1</td>
+        </tr>
+      </table>
+
+      <p style="margin:0 0 24px;">
+        <a th:href="${content.loginLink}" href="#"
+           style="display:inline-block;padding:12px 24px;background-color:#1a5cf3;color:#ffffff;font-size:14px;font-weight:bold;text-decoration:none;border-radius:8px;">
+          Sign In
+        </a>
+      </p>
+
+      <p style="margin:0;font-size:13px;color:#6b7280;">
+        Keep this password private and change it at first sign in. If you were not expecting this account, contact the Disaster Management Centre.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:16px 32px;border-top:1px solid #eceef6;font-size:11px;color:#9aa1b1;">
+      Disaster Management Centre, Sri Lanka. This is an automated message, please do not reply.
+    </td>
+  </tr>
+</table>
+</body>
+</html>

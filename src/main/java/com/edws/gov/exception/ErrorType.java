@@ -1,0 +1,15 @@
+package com.edws.gov.exception;
+
+
+public enum ErrorType {
+    VALIDATION_ERROR,
+    BAD_REQUEST,
+    AUTHENTICATION_ERROR,
+    AUTHORIZATION_ERROR,
+    RESOURCE_NOT_FOUND,
+    PATH_NOT_FOUND,
+    METHOD_NOT_ALLOWED,
+    UNSUPPORTED_MEDIA_TYPE,
+    CONFLICT,
+    INTERNAL_ERROR
+}

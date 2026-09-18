@@ -1,0 +1,37 @@
+{
+  "role": "DIVISION_ADMIN",
+  "elements": [
+    {
+      "element": "NAV_DASHBOARD",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "NAV_DISASTER_ALERTS",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "NAV_DOCUMENT_ARCHIVE",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "DISASTER_ALERT",
+      "actions": [
+        "VIEW",
+        "CREATE",
+        "EDIT"
+      ]
+    },
+    {
+      "element": "CITIZEN_REGISTRY",
+      "actions": [
+        "VIEW"
+      ]
+    }
+  ]
+}

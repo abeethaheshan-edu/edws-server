@@ -1,0 +1,59 @@
+{
+  "role": "PROVINCE_ADMIN",
+  "elements": [
+    {
+      "element": "NAV_DASHBOARD",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "NAV_DISASTER_ALERTS",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "NAV_USER_MANAGEMENT",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "NAV_DOCUMENT_ARCHIVE",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "USER_MANAGEMENT",
+      "actions": [
+        "VIEW",
+        "CREATE",
+        "EDIT"
+      ]
+    },
+    {
+      "element": "OFFICIAL_INVITE",
+      "actions": [
+        "VIEW",
+        "CREATE"
+      ]
+    },
+    {
+      "element": "DISASTER_ALERT",
+      "actions": [
+        "VIEW",
+        "CREATE",
+        "EDIT",
+        "APPROVE"
+      ]
+    },
+    {
+      "element": "CITIZEN_REGISTRY",
+      "actions": [
+        "VIEW"
+      ]
+    }
+  ]
+}

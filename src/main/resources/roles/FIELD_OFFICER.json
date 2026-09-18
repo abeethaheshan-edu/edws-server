@@ -1,0 +1,30 @@
+{
+  "role": "FIELD_OFFICER",
+  "elements": [
+    {
+      "element": "NAV_DASHBOARD",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "NAV_DISASTER_ALERTS",
+      "actions": [
+        "VIEW"
+      ]
+    },
+    {
+      "element": "DISASTER_ALERT",
+      "actions": [
+        "VIEW",
+        "CREATE"
+      ]
+    },
+    {
+      "element": "CITIZEN_REGISTRY",
+      "actions": [
+        "VIEW"
+      ]
+    }
+  ]
+}

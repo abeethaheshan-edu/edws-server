@@ -1,0 +1,121 @@
+spring:
+  config:
+    import: "optional:file:.env[extension=.properties][encoding=utf-8]"
+
+  application:
+    name: edws-server
+
+  mongodb:
+    uri: ${MONGO_URI}
+    auto-index-creation: true
+
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USER:guest}
+    password: ${RABBIT_PASS:guest}
+    listener:
+      simple:
+        acknowledge-mode: auto
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2000
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USER:abeethaheshan.edu@gmail.com}
+    password: ${MAIL_PASS:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        connectiontimeout: 5000
+        timeout: 5000
+        writetimeout: 5000
+
+  # Thymeleaf auto-configuration is excluded (see EdwsServerApplication); these keys would
+  # be ignored. Notification template settings live in NotificationConfig.
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 25MB
+
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /api/v1
+
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-exception: false
+
+edws:
+  security:
+    jwt:
+      secret: ${JWT_SECRET:change-this-to-a-long-random-secret-at-least-32-chars}
+      expiration-ms: 3600000
+      refresh-expiration-ms: 604800000
+      issuer: edws-server
+
+    cors:
+      allowed-origins: ${CORS_ALLOWED_ORIGINS:*}
+
+  bootstrap:
+    enabled: ${BOOTSTRAP_ENABLED:true}
+    super-admin-email: ${BOOTSTRAP_SUPER_ADMIN_EMAIL:superadmin@dmc.gov.lk}
+    super-admin-password: ${BOOTSTRAP_SUPER_ADMIN_PASSWORD:}
+    super-admin-name: ${BOOTSTRAP_SUPER_ADMIN_NAME:System Super Admin}
+
+  frontend:
+    base-url: ${FRONTEND_BASE_URL:http://localhost:4200}
+    reset-password-path: /auth/reset-password
+    login-path: /auth/login
+    reset-token-expiry-minutes: ${RESET_TOKEN_EXPIRY_MINUTES:30}
+
+  notification:
+    email:
+      enabled: true
+      from: ${NOTIFICATION_EMAIL_FROM:abeethaheshan.edu@gmail.com}
+
+    sms:
+      enabled: ${SMS_ENABLED:false}
+      account-sid: ${TWILIO_ACCOUNT_SID:}
+      auth-token: ${TWILIO_AUTH_TOKEN:}
+      from-number: ${TWILIO_FROM_NUMBER:}
+      default-country-code: "+94"
+
+    push:
+      enabled: ${PUSH_ENABLED:false}
+      credentials-path: ${FIREBASE_CREDENTIALS_PATH:file:/etc/edws/firebase-service-account.json}
+
+  storage:
+    type: ${STORAGE_TYPE:local}
+    local-path: ${STORAGE_PATH:./storage}
+    public-base-url: ${STORAGE_URL:http://localhost:8080/files}
+
+  alert:
+    default-buffer-meters: 500
+    languages: si,ta,en
+
+logging:
+  level:
+    root: INFO
+    com.edws.gov: DEBUG
+    org.springframework.data.mongodb: INFO
+    org.springframework.security: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
